@@ -44,7 +44,13 @@ pipeline {
                     waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonarqube-token'
                     }	
               }
-          } 
+          }
+	stage("Quality Gate") {
+          steps {
+             // Wait for the Webhook to call Jenkins back
+             waitForQualityGate abortPipeline: true
+         }
       }
- }
+   }
+}
 
